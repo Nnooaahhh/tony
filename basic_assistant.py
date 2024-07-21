@@ -5,11 +5,12 @@ def listen():
     recognizer = sr.Recognizer()
     with sr.Microphone() as source:
         print("Listening...")
-        recognizer.adjust_for_ambient_noise(source)  # Adjust for ambient noise
+        recognizer.adjust_for_ambient_noise(source)
         audio = recognizer.listen(source)
         try:
             text = recognizer.recognize_google(audio)
-            return text.lower()  # Convert to lowercase for comparison
+            print("Recognized text:", text)  # Add debugging line
+            return text.lower()
         except sr.UnknownValueError:
             print("Could not understand audio")
             return None
@@ -28,3 +29,5 @@ if __name__ == "__main__":
         text = listen()
         if text and wake_word in text:
             speak("Hello there!")
+        else:
+            print("Wake word not detected")  # Add debugging line
