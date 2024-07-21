@@ -1,17 +1,13 @@
 import speech_recognition as sr
 import pyttsx3
 
-# Initialize speech recognition and text-to-speech engines
-recognizer = sr.Recognizer()
-engine = pyttsx3.init()
-
-# Function to speak text
 def speak(text):
+    engine = pyttsx3.init()  # Initialize engine within function
     engine.say(text)
     engine.runAndWait()
 
-# Function to listen for wake word
 def listen():
+    recognizer = sr.Recognizer()  # Initialize recognizer within function
     with sr.Microphone() as source:
         print("Listening...")
         audio = recognizer.listen(source)
@@ -22,12 +18,12 @@ def listen():
             print("Could not understand audio")
             return None
         except sr.RequestError as e:
-            print("Could not request results from Google Speech Recognition service; {0}".format(e))
+            print(f"Could not request results; {e}")
             return None
 
-# Main loop
-wake_word = "hey tony"
-while True:
-    text = listen()
-    if text and wake_word in text.lower():
-        speak("Hello there!")
+if __name__ == "__main__":
+    wake_word = "hey tony"
+    while True:
+        text = listen()
+        if text and wake_word in text.lower():
+            speak("Hello there!")
