@@ -19,3 +19,13 @@ body {
     border: none;
     cursor: pointer;
 }
+
+body {
+    background-color: #121212; /* Darker black */
+}
+
+.primary-button {
+    background-color: #673AB7; /* Purple */
+}
+
+/* Add more elements and styles using different shades */
